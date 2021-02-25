@@ -1,4 +1,4 @@
-package src.edu.unca.csci338;
+package edu.unca.csci338;
 
 import java.awt.*;
 

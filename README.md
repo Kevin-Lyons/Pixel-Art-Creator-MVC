@@ -1,6 +1,6 @@
 # CSCI 338 Class Project
 This is a project to demonstrate the Model-View-Controller design pattern.
-The program can be used to create pixel art
+This program can be used to create pixel art
 
 # The assignment
 

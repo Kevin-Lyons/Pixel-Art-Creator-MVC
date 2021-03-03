@@ -25,6 +25,7 @@ public class PixelView extends Frame {
         setVisible(true);
 
         addMouseListener(controller);
+        addMouseMotionListener(controller);
         addWindowListener(controller);
     }
 

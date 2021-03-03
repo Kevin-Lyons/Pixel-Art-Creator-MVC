@@ -6,7 +6,7 @@ import java.awt.event.*;
 /**
  * PixelController
  */
-public class PixelController implements MouseListener, WindowListener {
+public class PixelController implements MouseListener, MouseMotionListener, WindowListener {
 
     private PixelModel model = new PixelModel(20,20);
     private PixelView view = new PixelView(model, this);
@@ -39,6 +39,20 @@ public class PixelController implements MouseListener, WindowListener {
     public void mouseExited(MouseEvent e) {
 
     }
+    
+    @Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+  
+    	draw(e);
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
     private void draw(MouseEvent e) {
         

@@ -11,6 +11,8 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
     private PixelModel model = new PixelModel(20,20);
     private PixelView view = new PixelView(model, this);
 
+    private boolean isLeftClick = true;
+
     /**
      * Mouse Handling
      */
@@ -56,9 +58,15 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
 
     private void draw(MouseEvent e) {
         
-        // determine color
+        // update click
+        if (e.getButton() == MouseEvent.BUTTON1)
+            isLeftClick = true; 
+        if (e.getButton() == MouseEvent.BUTTON3)
+            isLeftClick = false;
+
+        // get color
         Color c;
-        if (e.getButton() == MouseEvent.BUTTON1) {
+        if (isLeftClick) {
             c = Color.BLACK;
         } else
             c = null;

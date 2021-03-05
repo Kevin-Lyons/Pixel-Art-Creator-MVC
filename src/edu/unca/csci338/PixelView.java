@@ -67,6 +67,9 @@ public class PixelView extends Frame {
 
     public void addPixWidth(int amount) {
 
+        if (pixSize+amount < 1)
+            return;
+
         pixSize += amount;
         offsetX = ( width - pixSize*model.getWidth() ) / 2;
         offsetY = ( height - pixSize*model.getHeight() ) / 2;

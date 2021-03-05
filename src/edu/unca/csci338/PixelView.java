@@ -27,6 +27,7 @@ public class PixelView extends Frame {
         addMouseListener(controller);
         addMouseMotionListener(controller);
         addWindowListener(controller);
+        addMouseWheelListener(controller);
     }
 
     public void paint(Graphics g) {
@@ -57,5 +58,10 @@ public class PixelView extends Frame {
     public int getPixWidth() {
 
         return pixSize;
+    }
+
+    public void setPixWidth(int amount) {
+
+        pixSize += amount;
     }
 }

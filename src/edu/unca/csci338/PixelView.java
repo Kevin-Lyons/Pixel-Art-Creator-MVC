@@ -65,13 +65,8 @@ public class PixelView extends Frame {
         pixSize += amount;
     }
 
-    public int getCanvasX(int x) {
+    public Point getPoint(int x, int y) {
 
-        return x/pixSize;
-    }
-
-    public int getCanvasY(int y) {
-
-        return y/pixSize;
+        return new Point(x/pixSize,y/pixSize);
     }
 }

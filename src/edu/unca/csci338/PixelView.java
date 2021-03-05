@@ -26,6 +26,7 @@ public class PixelView extends Frame {
         // setup
         setSize(width,height);
         setTitle("Pixel Project");
+        addPixWidth(-5);
         setVisible(true);
 
         addMouseListener(controller);
@@ -64,7 +65,7 @@ public class PixelView extends Frame {
         return pixSize;
     }
 
-    public void setPixWidth(int amount) {
+    public void addPixWidth(int amount) {
 
         pixSize += amount;
         offsetX = ( width - pixSize*model.getWidth() ) / 2;

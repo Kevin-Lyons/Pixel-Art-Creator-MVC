@@ -59,9 +59,9 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
     public void mouseWheelMoved(MouseWheelEvent e) {
         
         if (e.getWheelRotation() < 0) {
-            view.setPixWidth(1);
+            view.addPixWidth(1);
         } else
-            view.setPixWidth(-1);
+            view.addPixWidth(-1);
         view.repaint();
     }
 

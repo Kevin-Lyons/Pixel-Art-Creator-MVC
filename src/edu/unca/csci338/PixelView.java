@@ -10,6 +10,8 @@ public class PixelView extends Frame {
     private int width = 500;
     private int height = 500;
     private int pixSize;
+    private int offsetX;
+    private int offsetY;
 
     private PixelModel model;
 
@@ -18,6 +20,8 @@ public class PixelView extends Frame {
         // fields
         this.model = model;
         this.pixSize = Math.min(width / model.getWidth(), height / model.getHeight());
+        this.offsetX = 0;
+        this.offsetY = 0;
 
         // setup
         setSize(width,height);
@@ -27,6 +31,7 @@ public class PixelView extends Frame {
         addMouseListener(controller);
         addMouseMotionListener(controller);
         addWindowListener(controller);
+        addMouseWheelListener(controller);
     }
 
     public void paint(Graphics g) {
@@ -49,7 +54,7 @@ public class PixelView extends Frame {
                 }
                 
                 // draw
-                g.fillRect(col*pixSize, row*pixSize, pixSize, pixSize);
+                g.fillRect(col*pixSize + offsetX, row*pixSize + offsetY, pixSize, pixSize);
             }
         }
     }
@@ -57,5 +62,18 @@ public class PixelView extends Frame {
     public int getPixWidth() {
 
         return pixSize;
+    }
+
+    public void setPixWidth(int amount) {
+
+        pixSize += amount;
+        offsetX = ( width - pixSize*model.getWidth() ) / 2;
+        offsetY = ( height - pixSize*model.getHeight() ) / 2;
+
+    }
+
+    public Point getPoint(int x, int y) {
+
+        return new Point((x - offsetX)/pixSize,(y - offsetY)/pixSize);
     }
 }

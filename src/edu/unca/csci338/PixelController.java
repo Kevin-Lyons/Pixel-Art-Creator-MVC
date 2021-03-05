@@ -6,7 +6,7 @@ import java.awt.event.*;
 /**
  * PixelController
  */
-public class PixelController implements MouseListener, MouseMotionListener, WindowListener {
+public class PixelController implements MouseListener, MouseMotionListener, WindowListener, MouseWheelListener {
 
     private PixelModel model = new PixelModel(20,20);
     private PixelView view = new PixelView(model, this);
@@ -56,6 +56,15 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
 		
 	}
 
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        
+        if (e.getWheelRotation() < 0) {
+            view.setPixWidth(1);
+        } else
+            view.setPixWidth(-1);
+        view.repaint();
+    }
+
     private void draw(MouseEvent e) {
         
         // update click
@@ -72,7 +81,7 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
             c = null;
 
         // actual drawing
-        model.setPixel(e.getX()/view.getPixWidth(), e.getY()/view.getPixWidth(), c);
+        model.setPixel(view.getPoint(e.getX(), e.getY()), c);
         view.repaint();
     }
 
@@ -119,4 +128,5 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
         
         new PixelController();
     }
+
 }

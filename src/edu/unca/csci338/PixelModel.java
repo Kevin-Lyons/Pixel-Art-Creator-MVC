@@ -1,6 +1,7 @@
 package edu.unca.csci338;
 
 import java.awt.Color;
+import java.awt.Point;
 
 /**
  * PixelModel
@@ -19,9 +20,9 @@ public class PixelModel {
         this.canvas = new Color[height][width];
     }
 
-    public void setPixel(int x, int y, Color c) {
+    public void setPixel(Point p, Color c) {
 
-        canvas[y][x] = c;
+        canvas[(int) p.getY()][(int) p.getX()] = c;
     }
 
     public Color[][] getCanvas() {

@@ -81,7 +81,7 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
             c = null;
 
         // actual drawing
-        model.setPixel(e.getX()/view.getPixWidth(), e.getY()/view.getPixWidth(), c);
+        model.setPixel(view.getCanvasX(e.getX()),view.getCanvasY(e.getY()), c);
         view.repaint();
     }
 

@@ -6,9 +6,10 @@ public class ColorPicker extends Panel {
     
     private int width;
     private int height;
-    private int paddingX;
-    private int paddingY;
-    private int rectSize = 50;
+    private int offsetX;
+    private int offsetY;
+    private int rectSize;
+    private int ratio;
 
     private PixelModel model;
 
@@ -17,8 +18,11 @@ public class ColorPicker extends Panel {
         // fields
         this.width = width;
         this.height = height;
-        this.paddingX = (width - rectSize)/2;
+        this.offsetX = 0;
+        this.offsetY = 0;
         this.model = model;
+
+        this.rectSize = 25;
 
         setSize(width, height);
         setBackground(Color.GRAY);
@@ -29,17 +33,43 @@ public class ColorPicker extends Panel {
     public void paint(Graphics g) {
         
         Color[] palette = model.getPalette();
-        paddingY = (height - palette.length*rectSize)/2;
+
+        ratio = getNearestRatio(palette.length, height/width);
+        offsetX = (width - (palette.length/ratio)*rectSize)/2;
+        offsetY = (height - ratio*rectSize)/2;
 
         for (int i=0; i < palette.length; i++) {
 
+            int x = i/ratio*rectSize + offsetX;
+            int y = i%ratio*rectSize + offsetY;
+
             g.setColor(palette[i]);
-            g.fillRect(paddingX, i*50 + paddingY, 50, 50);
+            g.fillRect(x, y, rectSize, rectSize);
+
         }
     }
 
     public int getPointColor(int x, int y) {
 
-        return (y - paddingY)/rectSize;
+        int newX = (x - offsetX)/rectSize;
+        int newY = (y - offsetY)/rectSize;
+
+        return newX*ratio + newY;
+    }
+
+    private int getNearestRatio(int n, int r) {
+
+        int closest = 1;
+        for (int i=2; i < Math.sqrt(n); i++) {
+
+            // finding factors of n
+            if (n % i == 0) {
+                if (Math.abs(r - n/i/i) < Math.abs(r - n/closest/closest)) {
+                    closest = i;
+                } else
+                    break;
+            }
+        }
+        return n/closest;
     }
 }

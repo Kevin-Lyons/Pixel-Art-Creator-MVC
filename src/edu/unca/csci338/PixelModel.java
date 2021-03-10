@@ -23,7 +23,7 @@ public class PixelModel {
 
         this.width = width;
         this.height = height;
-        loadPalette(new File("src/palettes/kirokaze-gameboy.hex"));
+        loadPalette(new File("src/palettes/endesga-32.hex"));
         this.currentColor = palette.get(0);
         this.canvas = new Color[height][width];
     }

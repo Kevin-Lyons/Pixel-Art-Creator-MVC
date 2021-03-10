@@ -11,6 +11,7 @@ public class PixelView extends Frame {
     private int height = 500;
 
     public Canvas canvas;
+    public ColorPicker picker;
 
     public PixelView(PixelModel model, PixelController controller) {
 
@@ -18,11 +19,9 @@ public class PixelView extends Frame {
         setSize(width,height);
         setTitle("Pixel Project");
 
-        Panel panel = new Panel();
-        panel.setBounds(0, 0, 100, height);
-        panel.setBackground(Color.GRAY);
+        picker = new ColorPicker(100, height, model, controller);
         canvas = new Canvas(width-100, height, 100, 0 , model, controller);
-        add(panel);
+        add(picker);
         add(canvas);
 
         setVisible(true);

@@ -24,7 +24,12 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
     @Override
     public void mousePressed(MouseEvent e) {
 
-        draw(e);
+        Class<?> className = e.getSource().getClass();
+        if (className == Canvas.class) {
+            draw(e);
+        } else if (className == ColorPicker.class) {
+            setColor(e);
+        }
     }
 
     @Override
@@ -76,13 +81,18 @@ public class PixelController implements MouseListener, MouseMotionListener, Wind
         // get color
         Color c;
         if (isLeftClick) {
-            c = Color.BLACK;
+            c = model.getColor();
         } else
             c = null;
 
         // actual drawing
         model.setPixel(view.canvas.getPoint(e.getX(), e.getY()), c);
         view.canvas.repaint();
+    }
+
+    private void setColor(MouseEvent e) {
+
+        model.setPaletteColor(view.picker.getPointColor(e.getX(), e.getY()));
     }
 
     /**

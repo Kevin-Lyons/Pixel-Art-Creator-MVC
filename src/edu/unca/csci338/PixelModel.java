@@ -10,6 +10,9 @@ public class PixelModel {
 
     private int width;
     private int height;
+    private Color currentColor;
+
+    private Color[] palette = {Color.decode("#332c50"), Color.decode("#46878f"), Color.decode("#94e344"), Color.decode("#e2f3e4")};
 
     private Color[][] canvas;
 
@@ -17,6 +20,7 @@ public class PixelModel {
 
         this.width = width;
         this.height = height;
+        this.currentColor = palette[0];
         this.canvas = new Color[height][width];
     }
 
@@ -30,6 +34,11 @@ public class PixelModel {
         return canvas;
     }
 
+    public Color[] getPalette() {
+
+        return palette;
+    }
+
     public int getWidth() {
 
         return width;
@@ -38,5 +47,15 @@ public class PixelModel {
     public int getHeight() {
 
         return height;
+    }
+
+    public void setPaletteColor(int index) {
+
+        currentColor = palette[index];
+    }
+
+    public Color getColor() {
+
+        return currentColor;
     }
 }

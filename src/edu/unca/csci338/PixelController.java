@@ -8,7 +8,7 @@ import java.awt.event.*;
  */
 public class PixelController implements MouseListener, MouseMotionListener, WindowListener, MouseWheelListener {
 
-    private PixelModel model = new PixelModel(20,20);
+    private PixelModel model = new PixelModel(16,16);
     private PixelView view = new PixelView(model, this);
 
     private boolean isLeftClick = true;
